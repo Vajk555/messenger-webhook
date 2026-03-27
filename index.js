@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 const VERIFY_TOKEN = 'barbershop123';
-const MAKE_WEBHOOK_URL = 'IDE_A_MAKE_WEBHOOK_URL';
+const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/dbw9tuofd5ooclbm1k1sqn075dbusfco';
 
 app.get('/webhook', (req, res) => {
   const mode = req.query['hub.mode'];
