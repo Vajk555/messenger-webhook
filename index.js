@@ -3,7 +3,7 @@ const app = express();
 
 const VERIFY_TOKEN = 'barbershop123';
 
-app.get('/', (req, res) => {
+app.get('/webhook', (req, res) => {
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
   const challenge = req.query['hub.challenge'];
@@ -11,13 +11,12 @@ app.get('/', (req, res) => {
   if (mode === 'subscribe' && token === VERIFY_TOKEN) {
     res.status(200).send(challenge);
   } else {
-    res.status(200).send('OK');
+    res.sendStatus(403);
   }
 });
 
-app.post('/', (req, res) => {
-  res.status(200).send('OK');
+app.post('/webhook', (req, res) => {
+  res.sendStatus(200);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+app.listen(process.env.PORT || 3000);
